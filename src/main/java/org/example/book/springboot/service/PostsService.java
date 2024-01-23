@@ -19,11 +19,13 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
 
+    //저장
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
+    //수정
     @Transactional
     public Long update(Long id, PostsSaveRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
@@ -34,6 +36,8 @@ public class PostsService {
         return id;
     }
 
+
+    //id를 통한 게시글 찾기
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
@@ -41,6 +45,7 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    //내림차순
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
@@ -48,6 +53,8 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
+
+    //삭제
     @Transactional
     public void delete(Long id) {
         Posts posts = postsRepository.findById(id)

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.book.springboot.service.PostsService;
 import org.example.book.springboot.web.dto.PostsResponseDto;
 import org.example.book.springboot.web.dto.PostsSaveRequestDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
